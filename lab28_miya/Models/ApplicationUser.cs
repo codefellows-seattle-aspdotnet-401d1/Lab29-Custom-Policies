@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace lab28_miya.Models
 {
@@ -22,6 +23,11 @@ namespace lab28_miya.Models
         public string LastName
         {
             get; set;
+        }
+
+        internal void AddIdentity(ClaimsIdentity userIdentity)
+        {
+            throw new NotImplementedException();
         }
     }
 }
