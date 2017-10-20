@@ -11,7 +11,7 @@ namespace IdentityDay2.Models
     {
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, MedicalOfficerRequirement requirement)
         {
-            if (context.User.HasClaim(c => c.Value == "Medical"))
+            if (context.User.FindFirst(c => c.Type == ClaimTypes.Role).Value == "Medical")
             {
                 context.Succeed(requirement);
             }

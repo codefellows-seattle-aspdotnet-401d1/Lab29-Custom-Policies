@@ -12,6 +12,7 @@ using IdentityDay2.Models;
 using IdentityDay2.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IdentityDay2
 {
@@ -38,8 +39,9 @@ namespace IdentityDay2
                 options.AddPolicy("Admin Only", policy => policy.RequireRole("Admin"));
                 options.AddPolicy("Medical", policy => policy.Requirements.Add(new MedicalOfficerRequirement()));
             });
-                
 
+
+            services.AddSingleton<IAuthorizationHandler, IsMedicalOfficer>();
             services.AddMvc();
 
             //Regular Db context
