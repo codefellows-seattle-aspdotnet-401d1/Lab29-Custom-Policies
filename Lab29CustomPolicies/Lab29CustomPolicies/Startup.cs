@@ -41,7 +41,7 @@ namespace Lab29CustomPolicies
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                await context.Response.WriteAsync("Somehting went wrong.  So very, very wrong.");
             });
         }
     }
