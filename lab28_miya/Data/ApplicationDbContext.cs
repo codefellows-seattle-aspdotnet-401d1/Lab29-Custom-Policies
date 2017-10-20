@@ -11,9 +11,5 @@ namespace lab28_miya.Data
         {
 
         }
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-        }
     }
 }

@@ -37,9 +37,9 @@ namespace lab28_miya
 
             services.AddAuthorization(options =>
             {
-
+                //this is where the policy is created
                 options.AddPolicy("Admin Only", policy => policy.RequireRole("Administrator"));
-                options.AddPolicy("MinimumAge", policy => policy.Requirements.Add(new MinimumYearsInService()));
+                options.AddPolicy("MinimumYearsInService", policy => policy.Requirements.Add(new MinimumYearsInService()));
             }
             );
 
@@ -72,10 +72,10 @@ namespace lab28_miya
             app.UseMvcWithDefaultRoute();
 
             //I am unclear about whether or not this is needed and when it should be taken out
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
+            //app.Run(async (context) =>
+            //{
+            //    await context.Response.WriteAsync("Hello World!");
+            //});
         }
     }
 }

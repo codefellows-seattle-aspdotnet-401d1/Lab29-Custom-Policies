@@ -25,7 +25,7 @@ namespace lab28_miya.Models
             get; set;
         }
         [DataType(DataType.Date)]
-        public DateTime Birthday
+        public DateTime StartDate
         {
             get; set;
         }

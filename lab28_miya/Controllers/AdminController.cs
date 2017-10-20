@@ -1,6 +1,5 @@
 ﻿using lab28_miya.Models;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,14 +11,14 @@ using System.Threading.Tasks;
 
 namespace lab28_miya.Controllers
 {
-    [Authorize(Policy = "MinimumYearsInService")]
-    public class AccountController : Controller
+    [Authorize(Policy="Admin Only")]
+    public class AdminController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
 
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AdminController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -35,13 +34,13 @@ namespace lab28_miya.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel rvm)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = rvm.Email, Email = rvm.Email, FirstName = rvm.FirstName, LastName = rvm.LastName };
 
                 var result = await _userManager.CreateAsync(user, rvm.Password);
 
-                if(result.Succeeded)
+                if (result.Succeeded)
                 {
                     //const string issuer = "www.miya.com";
 
@@ -53,22 +52,21 @@ namespace lab28_miya.Controllers
                     myClaims.Add(claim1);
 
                     //this is a claim for the user's role
-                    Claim claim2 = new Claim(ClaimTypes.Role, "CPS Agent", ClaimValueTypes.String);
+                    Claim claim2 = new Claim(ClaimTypes.Role, "Administrator", ClaimValueTypes.String);
                     myClaims.Add(claim2);
 
-                    //this is a claim that declares when the worker first started with the company
+                    //this is a claim for the user's date of birth
                     Claim StartDate = new Claim(ClaimTypes.UserData, rvm.StartDate.Date.ToString(), ClaimValueTypes.Date);
                     myClaims.Add(StartDate);
 
                     var addClaims = await _userManager.AddClaimsAsync(user, myClaims);
-                                        
+
                     return RedirectToAction("Index", "Home");
 
                 }
             }
             return View();
         }
-
         [HttpGet]
         [AllowAnonymous]
         public IActionResult LogIn()
@@ -132,4 +130,4 @@ namespace lab28_miya.Controllers
             return View();
         }
     }
-}
+}   

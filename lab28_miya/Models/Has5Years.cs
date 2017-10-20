@@ -17,7 +17,7 @@ namespace lab28_miya.Models
             {
                 return Task.CompletedTask;
             }
-            var startDate = Convert.ToDateTime(context.User.FindFirst(c => c.Type == ClaimTypes.StartDate).Value);
+            var startDate = Convert.ToDateTime(context.User.FindFirst(c => c.Type == ClaimTypes.UserData).Value);
 
             int tenure = DateTime.Compare(DateTime.Now, startDate);
 
