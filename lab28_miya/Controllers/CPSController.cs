@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace lab28_miya.Controllers
 {
-    [Authorize(Policy = "MinimumYearsinService")]
+    [Authorize(Policy = "Field Work")]
     public class CPSController : Controller
     {
         private readonly lab28_miyaContext _context;

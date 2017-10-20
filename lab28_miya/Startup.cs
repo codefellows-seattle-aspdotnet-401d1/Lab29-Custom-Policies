@@ -40,6 +40,8 @@ namespace lab28_miya
                 //this is where the policy is created
                 options.AddPolicy("Admin Only", policy => policy.RequireRole("Administrator"));
                 options.AddPolicy("MinimumYearsInService", policy => policy.Requirements.Add(new MinimumYearsInService()));
+                options.AddPolicy("CPS Agent", policy => policy.RequireRole("Field Work"));
+                options.AddPolicy("Skill Set", policy => policy.RequireClaim();
             }
             );
 
