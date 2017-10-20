@@ -35,15 +35,18 @@ namespace Lab28Tom.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = rvm.Email, Email = rvm.Email };
+                var user = new ApplicationUser { UserName = rvm.Email, Email = rvm.Email, DestinyBirthday = rvm.DestinyBirthday, PowerLevel = rvm.PowerLevel };
                 var result = await _userManager.CreateAsync(user, rvm.Password);
 
+                //if user was successfully registered
                 if (result.Succeeded)
                 {
-                    //List<Claim> myClaims = new List<Claim>();
+                    const string issuer = "www.destiny.com";
+                    List<Claim> myClaims = new List<Claim>();
 
-                    //Claim claim1 = new Claim(ClaimTypes.Name, rvm.FirstName + " " + rvm.LastName, ClaimValueTypes.String, issuer);
-                    //myClaims.Add(claim1);
+                    //power level claim
+                    Claim claim1 = new Claim(ClaimTypes.Name, rvm.PowerLevel.ToString(), ClaimValueTypes.String, issuer);
+                    myClaims.Add(claim1);
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
                     return RedirectToAction("Index", "Home");
