@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+using Lab29CustomPolicies.Models;
 
 namespace Lab29CustomPolicies
 {
@@ -24,6 +26,9 @@ namespace Lab29CustomPolicies
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddDbContext<Lab29CustomPoliciesContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("Lab29CustomPoliciesContext")));
 
         }
 
