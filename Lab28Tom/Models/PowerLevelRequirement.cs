@@ -2,7 +2,8 @@
 
 namespace Lab28Tom
 {
-    internal class PowerLevelRequirement : IAuthorizationRequirement
+    public class PowerLevelRequirement : IAuthorizationRequirement
     {
+
     }
 }

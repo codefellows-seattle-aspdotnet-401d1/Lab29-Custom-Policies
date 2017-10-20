@@ -12,6 +12,7 @@ using Lab28Tom.Models;
 using Lab28Tom.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Lab28Tom
 {
@@ -42,7 +43,7 @@ namespace Lab28Tom
             }
             );
 
-            
+            services.AddSingleton<IAuthorizationHandler, MeetsPowerReq>();
 
             services.AddMvc();
 
