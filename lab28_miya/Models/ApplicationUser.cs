@@ -24,10 +24,15 @@ namespace lab28_miya.Models
         {
             get; set;
         }
-
-        internal void AddIdentity(ClaimsIdentity userIdentity)
+        [DataType(DataType.Date)]
+        public DateTime Birthday
         {
-            throw new NotImplementedException();
+            get; set;
         }
+
+        //internal void AddIdentity(ClaimsIdentity userIdentity)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
