@@ -1,4 +1,5 @@
 ﻿using Lab28Tom.Models;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -45,9 +46,14 @@ namespace Lab28Tom.Controllers
                     List<Claim> myClaims = new List<Claim>();
 
                     //power level claim
-                    Claim claim1 = new Claim(ClaimTypes.Name, rvm.PowerLevel.ToString(), ClaimValueTypes.String, issuer);
-                    myClaims.Add(claim1);
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    Claim power = new Claim(ClaimTypes.Name, rvm.PowerLevel.ToString(), ClaimValueTypes.String, issuer);
+                    myClaims.Add(power);
+
+                    Claim dbirthday = new Claim(ClaimTypes.DateOfBirth, rvm.DestinyBirthday.Date.ToString(), ClaimValueTypes.Date);
+                    myClaims.Add(dbirthday);
+
+                    //await _signInManager.SignInAsync(user, isPersistent: false);
+                    var addClaims = await _userManager.AddClaimsAsync(user, myClaims);
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -65,7 +71,7 @@ namespace Lab28Tom.Controllers
         [HttpPost]
         public async Task<IActionResult> AdminRegister(RegisterViewModel arvm)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = arvm.Email, Email = arvm.Email };
                 var result = await _userManager.CreateAsync(user, arvm.Password);
@@ -81,7 +87,7 @@ namespace Lab28Tom.Controllers
 
                     var addClaims = await _userManager.AddClaimsAsync(user, myClaims);
 
-                    if(addClaims.Succeeded)
+                    if (addClaims.Succeeded)
                     {
                         await _signInManager.PasswordSignInAsync(arvm.Email, arvm.Password, true, lockoutOnFailure: false);
 
@@ -108,9 +114,39 @@ namespace Lab28Tom.Controllers
         {
             if (ModelState.IsValid)
             {
+                var user = await _userManager.FindByEmailAsync(lvm.Email);
+
                 var result = await _signInManager.PasswordSignInAsync(lvm.Email, lvm.Password, lvm.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    const string issuer = "www.destiny.com";
+
+                    List<Claim> myClaims = new List<Claim>();
+
+                    //power level claim
+                    Claim power = new Claim(ClaimTypes.Name, user.PowerLevel.ToString(), ClaimValueTypes.String, issuer);
+                    myClaims.Add(power);
+
+                    Claim dbirthday = new Claim(ClaimTypes.DateOfBirth, user.DestinyBirthday.Date.ToString(), ClaimValueTypes.Date);
+                    myClaims.Add(dbirthday);
+
+                    var userIdentity = new ClaimsIdentity("Registration");
+                    userIdentity.AddClaims(myClaims);
+
+                    var userPrinciple = new ClaimsPrincipal(userIdentity);
+
+                    User.AddIdentity(userIdentity);
+
+                    await HttpContext.SignInAsync(
+                    "MyCookieLogin", userPrinciple,
+                        new AuthenticationProperties
+                        {
+                             ExpiresUtc = DateTime.UtcNow.AddMinutes(30),
+                            IsPersistent = false,
+                            AllowRefresh = false
+
+                        });
+
                     return RedirectToAction("Index", "Home");
                 }
 
