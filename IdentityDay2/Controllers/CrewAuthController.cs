@@ -42,9 +42,20 @@ namespace IdentityDay2.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    Claim department = new Claim(ClaimTypes.Role, rvm.Department.ToString(), ClaimValueTypes.String);
-                    await _userManager.AddClaimsAsync(user, new Claim[] { department });
-                    return RedirectToAction("Index", "Home");
+
+                    List<Claim> memberClaims = new List<Claim>();
+
+                    Claim memberDept = new Claim(ClaimTypes.Role, rvm.Department.ToString(), ClaimValueTypes.String);
+                    memberClaims.Add(memberDept);
+
+                    var addClaims = await _userManager.AddClaimsAsync(user, memberClaims);
+
+                    if (addClaims.Succeeded)
+                    {
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
             }
             return View();
@@ -104,10 +115,6 @@ namespace IdentityDay2.Controllers
                 var result = await _signInManager.PasswordSignInAsync(lvm.Email, lvm.Password, lvm.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    var user = await _userManager.FindByEmailAsync(lvm.Email);
-
-                    List<Claim> userClaims = new List<Claim>();
-
                     return RedirectToAction("Index", "Home");
                 }
 

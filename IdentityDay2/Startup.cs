@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using IdentityDay2.Models;
 using IdentityDay2.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace IdentityDay2
 {
@@ -28,6 +29,10 @@ namespace IdentityDay2
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            //    .AddCookie("MyCookieLogin", options =>
+            //    options.AccessDeniedPath = new PathString("/Account/Forbidden/"));
+
             //Enable Admin-Only policy
             services.AddAuthorization(options => {
                 options.AddPolicy("Admin Only", policy => policy.RequireRole("Admin"));
