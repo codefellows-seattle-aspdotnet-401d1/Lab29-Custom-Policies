@@ -12,6 +12,7 @@ using lab28_miya.Models;
 using lab28_miya.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 
 namespace lab28_miya
 {
@@ -35,7 +36,14 @@ namespace lab28_miya
                 options.AccessDeniedPath = new PathString("/Account/Forbidden/"));
 
             services.AddAuthorization(options =>
-            options.AddPolicy("Admin Only", policy => policy.RequireRole("Administrator")));
+            {
+
+                options.AddPolicy("Admin Only", policy => policy.RequireRole("Administrator"));
+                options.AddPolicy("MinimumAge", policy => policy.Requirements.Add(new MinimumYearsInService()));
+            }
+            );
+
+            services.AddSingleton<IAuthorizationHandler, Has5Years>();
 
             services.AddMvc();
 
@@ -62,6 +70,12 @@ namespace lab28_miya
 
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
+
+            //I am unclear about whether or not this is needed and when it should be taken out
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync("Hello World!");
+            });
         }
     }
 }
