@@ -76,7 +76,14 @@ namespace Lab29.Controllers
                     Claim dateOfBirth = new Claim(ClaimTypes.DateOfBirth, rvm.Birthday.Date.ToString(), ClaimValueTypes.Date);
 
                     myClaims.Add(dateOfBirth);
-                    
+
+                    var userIdentity = new ClaimsIdentity("Registration");
+                    userIdentity.AddClaims(myClaims);
+
+                    var userPrinciple = new ClaimsPrincipal(userIdentity);
+
+                    User.AddIdentity(userIdentity);
+
                     var addClaims = await _userManager.AddClaimsAsync(user, myClaims);
 
                     return RedirectToAction("Index", "Home");
@@ -107,6 +114,13 @@ namespace Lab29.Controllers
 
                     Claim adminClaim = new Claim(ClaimTypes.Role, "Admin", ClaimValueTypes.String);
                     adminClaims.Add(adminClaim);
+
+                    var userIdentity = new ClaimsIdentity("Registration");
+                    userIdentity.AddClaims(adminClaims);
+
+                    var userPrinciple = new ClaimsPrincipal(userIdentity);
+
+                    User.AddIdentity(userIdentity);
 
                     var addClaims = await _userManager.AddClaimsAsync(user, adminClaims);
 
