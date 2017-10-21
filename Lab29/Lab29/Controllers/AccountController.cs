@@ -26,7 +26,6 @@ namespace Lab29.Controllers
         public IActionResult Login()
         {
             return View();
-
         }
 
         [HttpPost]
@@ -34,50 +33,14 @@ namespace Lab29.Controllers
         {
             if (ModelState.IsValid)
             {
-
-                var user = await _userManger.FindByEmailAsync(lvm.Email);
-
-              
-                var result = await _signInManager.PasswordSignInAsync(lvm.Email, lvm.Password, lvm.RememberMe, false);
+                var result = await _signInManager.PasswordSignInAsync(lvm.Email, lvm.Password, lvm.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-
-                    
-                    //Create a list where my claims will be added to
-                    List<Claim> myClaims = new List<Claim>();
-
-                    // claim for the User's role
-                    Claim claim1 = new Claim(ClaimTypes.Name, user.FirstName + " " + user.LastName, ClaimValueTypes.String);
-                    myClaims.Add(claim1);
-
-                    //Claim for the user's name
-                    Claim claim2 = new Claim(ClaimTypes.Role, "Member", ClaimValueTypes.String);
-                    myClaims.Add(claim2);
-
-                    Claim dateOfBirth = new Claim(ClaimTypes.DateOfBirth, user.Birthday.Date.ToString(), ClaimValueTypes.Date);
-
-                    myClaims.Add(dateOfBirth);
-
-                    var userIdentity = new ClaimsIdentity("Registration");
-                    userIdentity.AddClaims(myClaims);
-
-                    var userPrinciple = new ClaimsPrincipal(userIdentity);
-
-                    User.AddIdentity(userIdentity);
-
-                    await HttpContext.SignInAsync(
-                        "MyCookieLogin", userPrinciple,
-                            new AuthenticationProperties
-                            {
-                                ExpiresUtc = DateTime.UtcNow.AddMinutes(30),
-                                IsPersistent = false,
-                                AllowRefresh = false
-
-                            });
                     return RedirectToAction("Index", "Home");
                 }
             }
-
+            string error = "you are wrong";
+            ModelState.AddModelError("", error);
             return View();
         }
 
@@ -127,6 +90,7 @@ namespace Lab29.Controllers
             return View();
         }
 
+
         public IActionResult AccessDenied()
         {
             return View("Forbidden");
@@ -136,7 +100,7 @@ namespace Lab29.Controllers
         public IActionResult Logout()
         {
             _signInManager.SignOutAsync();
-            return View();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
