@@ -1,0 +1,26 @@
+﻿@model List<Lab29.Models.VideoGames>
+
+@{
+    Layout = "_Layout";
+}
+<form method="get">
+    <button asp-controller="Account" asp-action="Register" type="submit">Register</button>
+</form>
+<form method="get">
+    <button asp-controller="Account" asp-action="login" type="submit">Login</button>
+</form>
+<form method="get">
+    <button asp-controller="Account" asp-action="Logout" type="submit">Logout</button>
+</form>
+<form method="get">
+    <button asp-controller="VideoGames" asp-action="Index" type="submit">Add a Game</button>
+</form>
+
+
+@foreach (var item in Model)
+{
+    <h1>@item.Title</h1>
+    <p>@item.Description</p>
+    <p>@item.Rating</p>
+    <p>@item.IsReleased</p>
+}
