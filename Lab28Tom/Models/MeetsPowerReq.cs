@@ -21,6 +21,7 @@ namespace Lab28Tom.Models
 
             var power = Convert.ToInt32(context.User.FindFirst(c => c.Type == ClaimTypes.Name).Value);
 
+
             if (power >= 280)
             {
                 context.Succeed(requirement);

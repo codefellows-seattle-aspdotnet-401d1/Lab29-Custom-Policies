@@ -43,6 +43,7 @@ namespace Lab28Tom
             }
             );
 
+            //dependency injection
             services.AddSingleton<IAuthorizationHandler, MeetsPowerReq>();
 
             services.AddMvc();

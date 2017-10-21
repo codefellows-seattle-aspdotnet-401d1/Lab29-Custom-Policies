@@ -10,7 +10,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Lab28Tom.Controllers
 {
-    [Authorize(Policy = "Admin Only")]
+    //[Authorize(Policy = "Admin Only")]
+    [Authorize(Policy = "Minimum Power")]
     public class LFGController : Controller
     {
         private readonly Lab28TomContext _context;
