@@ -12,13 +12,13 @@ namespace Lab29.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManger;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
 
         public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
-            _userManger = userManager;
+            _userManager = userManager;
             _signInManager = signInManager;
         }
 
@@ -55,8 +55,8 @@ namespace Lab29.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = rvm.Email, Email = rvm.Email, FirstName = rvm.FirstName, LastName = rvm.LastName, Birthday = rvm.Birthday };
-                var result = await _userManger.CreateAsync(user, rvm.Password);
+                var user = new ApplicationUser { UserName = rvm.FirstName, Email = rvm.Email, FirstName = rvm.FirstName, LastName = rvm.LastName, Birthday = rvm.Birthday };
+                var result = await _userManager.CreateAsync(user, rvm.Password);
 
                 if (result.Succeeded)
                 {
@@ -70,16 +70,14 @@ namespace Lab29.Controllers
                     myClaims.Add(claim1);
 
                     //Claim for the user's name
-                    Claim claim2 = new Claim(ClaimTypes.Role, "Administrator", ClaimValueTypes.String);
+                    Claim claim2 = new Claim(ClaimTypes.Role, "Member", ClaimValueTypes.String);
                     myClaims.Add(claim2);
 
                     Claim dateOfBirth = new Claim(ClaimTypes.DateOfBirth, rvm.Birthday.Date.ToString(), ClaimValueTypes.Date);
 
                     myClaims.Add(dateOfBirth);
-
-
-                    // var addRole = await _userManger.AddClaimAsync(user, (new Claim(ClaimTypes.Role, "Administrator", ClaimValueTypes.String)));
-                    var addClaims = await _userManger.AddClaimsAsync(user, myClaims);
+                    
+                    var addClaims = await _userManager.AddClaimsAsync(user, myClaims);
 
                     return RedirectToAction("Index", "Home");
 
@@ -89,6 +87,36 @@ namespace Lab29.Controllers
             }
             return View();
         }
+        [HttpGet]
+        public IActionResult AdminRegister()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AdminRegister(RegisterViewModel rvm)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = rvm.LastName, Email = rvm.Email, FirstName = rvm.FirstName, LastName = rvm.LastName, Birthday = rvm.Birthday };
+                var result = await _userManager.CreateAsync(user, rvm.Password);
+
+                if (result.Succeeded)
+                {
+                    List<Claim> adminClaims = new List<Claim>();
+
+                    Claim adminClaim = new Claim(ClaimTypes.Role, "Admin", ClaimValueTypes.String);
+                    adminClaims.Add(adminClaim);
+
+                    var addClaims = await _userManager.AddClaimsAsync(user, adminClaims);
+
+                    return RedirectToAction("Index", "Home");
+                }
+
+            }
+            return View();
+        }
+
 
 
         public IActionResult AccessDenied()

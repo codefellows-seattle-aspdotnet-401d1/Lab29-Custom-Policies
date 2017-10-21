@@ -20,7 +20,7 @@
                 Hello @User.Identities.First(u => u.IsAuthenticated &&
                   u.HasClaim(c => c.Type == ClaimTypes.Name)).FindFirst(ClaimTypes.Name).Value
 
-                Hello @User.Claims.First(u =>
+                @*Hello @User.Claims.First(u =>*@
             </span>
 
         }

@@ -35,9 +35,9 @@ namespace Lab29
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("Admin Only", policy => policy.RequireRole("Administrator"));
+                options.AddPolicy("Admin Only", policy => policy.RequireRole("Admin"));
                 options.AddPolicy("MinimumAge", policy => policy.Requirements.Add(new MinimumAgeRequirment()));
-                options.AddPolicy("For Members", policy => policy.RequireRole("Members"));
+                options.AddPolicy("For Members", policy => policy.RequireRole("Member"));
 
             }
             );
