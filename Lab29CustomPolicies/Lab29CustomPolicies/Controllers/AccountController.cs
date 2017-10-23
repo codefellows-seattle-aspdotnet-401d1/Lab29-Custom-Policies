@@ -37,7 +37,9 @@ namespace Lab29CustomPolicies.Controllers
                 var result = await _userManager.CreateAsync(user, rvm.Password);
 
                 if (result.Succeeded)
-                {
+                { 
+                    Claim dateOfBirth = new Claim(ClaimTypes.DateOfBirth, user.Birthday.Date.ToString(), ClaimValueTypes.Date);
+
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
