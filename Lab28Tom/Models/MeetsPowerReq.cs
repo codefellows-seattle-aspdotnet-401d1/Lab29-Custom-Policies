@@ -13,13 +13,13 @@ namespace Lab28Tom.Models
 
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, PowerLevelRequirement requirement)
         {
-            if (!context.User.HasClaim(c => c.Type == ClaimTypes.Name))
+            if (!context.User.HasClaim(c => c.Type == ClaimTypes.Role))
             {
                 return Task.CompletedTask;
 
             }
 
-            var power = Convert.ToInt32(context.User.FindFirst(c => c.Type == ClaimTypes.Name).Value);
+            var power = Convert.ToInt32(context.User.FindFirst(c => c.Type == ClaimTypes.Role).Value);
 
 
             if (power >= 280)

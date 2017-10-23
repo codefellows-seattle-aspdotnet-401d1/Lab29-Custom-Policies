@@ -46,7 +46,7 @@ namespace Lab28Tom.Controllers
                     List<Claim> myClaims = new List<Claim>();
 
                     //power level claim
-                    Claim power = new Claim(ClaimTypes.Name, rvm.PowerLevel.ToString(), ClaimValueTypes.String, issuer);
+                    Claim power = new Claim(ClaimTypes.Role, rvm.PowerLevel.ToString(), ClaimValueTypes.Integer32, issuer);
                     myClaims.Add(power);
 
                     Claim dbirthday = new Claim(ClaimTypes.DateOfBirth, rvm.DestinyBirthday.Date.ToString(), ClaimValueTypes.Date);
