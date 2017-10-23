@@ -31,7 +31,7 @@ namespace Lab28Tom.Models
         public DateTime DestinyBirthday { get; set; }
 
         [Required]
-        [Display(Name = "Power Level")]
+        [Display(Name = "Power Level(200-350)")]
         [Range(200, 350)]
         public int PowerLevel { get; set; }
     }

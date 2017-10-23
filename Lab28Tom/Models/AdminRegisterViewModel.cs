@@ -25,5 +25,14 @@ namespace Lab28Tom.Models
         [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "Your passwords don't match!")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        public DateTime DestinyBirthday { get; set; }
+
+        [Required]
+        [Display(Name = "Power Level")]
+        [Range(200, 350)]
+        public int PowerLevel { get; set; }
     }
 }
