@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Lab29.Controllers
 {
-    
+    [Authorize(Policy = "For Members")]
     public class VideoGamesController : Controller
     {
         private readonly Lab29Context _context;

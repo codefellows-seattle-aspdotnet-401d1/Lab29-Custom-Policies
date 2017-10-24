@@ -11,5 +11,6 @@
     <WebStackScaffolding_DbContextTypeFullName>Lab29.Models.Lab29Context</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_IsViewGenerationSelected>True</WebStackScaffolding_IsViewGenerationSelected>
+    <NameOfLastUsedPublishProfile>Lab2920171024113539 - Web Deploy</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>
