@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace lab28_miya.Controllers
 {
-    [Authorize(Policy = "MinimumYearsInService")]
+    //[Authorize(Policy = "MinimumYearsInService")]
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -26,7 +26,6 @@ namespace lab28_miya.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
@@ -61,7 +60,9 @@ namespace lab28_miya.Controllers
                     myClaims.Add(StartDate);
 
                     var addClaims = await _userManager.AddClaimsAsync(user, myClaims);
-                                        
+
+                    await _signInManager.SignInAsync(user, false);
+
                     return RedirectToAction("Index", "Home");
 
                 }
@@ -70,7 +71,6 @@ namespace lab28_miya.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult LogIn()
         {
             return View();
