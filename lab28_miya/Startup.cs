@@ -40,8 +40,8 @@ namespace lab28_miya
                 //this is where the policy is created
                 options.AddPolicy("Admin Only", policy => policy.RequireRole("Administrator"));
                 options.AddPolicy("MinimumYearsInService", policy => policy.Requirements.Add(new MinimumYearsInService()));
-                options.AddPolicy("CPS Agent", policy => policy.RequireRole("Field Work"));
-                options.AddPolicy("Skill Set", policy => policy.RequireClaim();
+                options.AddPolicy("Field Work", policy => policy.RequireRole("CPS Agent"));
+                options.AddPolicy("Skill Set", policy => policy.RequireClaim("StartDate"));
             }
             );
 
@@ -74,10 +74,10 @@ namespace lab28_miya
             app.UseMvcWithDefaultRoute();
 
             //I am unclear about whether or not this is needed and when it should be taken out
-            //app.Run(async (context) =>
-            //{
-            //    await context.Response.WriteAsync("Hello World!");
-            //});
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync("What's my purpose?");
+            });
         }
     }
 }
