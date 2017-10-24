@@ -20,10 +20,10 @@
 
 ### ReadMe
 - Your readme should include the following information:
-	- How long did it take you to complete this assignment?
-	- What did you struggle with? Why? How did you solve?
-	- What did you learn during this assignment?
-    - What resources did you utilize for this assignment?
+	- How long did it take you to complete this assignment? 3  hours
+	- What did you struggle with? Why? How did you solve? I struggled with identifying how to complete each task/requirement.
+	- What did you learn during this assignment? I learned that in order to provide different registration pages for the average user versus admin, I would hae to designate a controller only for the admin role.
+    - What resources did you utilize for this assignment? class demos
     
 
 ### To Submit this Assignment
