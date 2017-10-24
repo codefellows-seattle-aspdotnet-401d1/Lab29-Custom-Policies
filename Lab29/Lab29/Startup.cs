@@ -33,6 +33,7 @@ namespace Lab29
                  options.AccessDeniedPath = new PathString("/Account/Forbidden/"));
 
 
+
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Admin Only", policy => policy.RequireRole("Admin"));
@@ -56,6 +57,12 @@ namespace Lab29
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+                facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
