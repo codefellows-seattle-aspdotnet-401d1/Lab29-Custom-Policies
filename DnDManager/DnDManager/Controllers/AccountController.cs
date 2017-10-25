@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using DnDManager.Models;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
 
 namespace DnDManager.Controllers
 {
@@ -95,6 +96,28 @@ namespace DnDManager.Controllers
                 var result = await _signInManager.PasswordSignInAsync(lvm.Email, lvm.Password, lvm.RememberMe, true);
                 if (result.Succeeded)
                 {
+                    List<Claim> myClaims = new List<Claim>();
+
+                    Claim dungeonMaster = new Claim(ClaimTypes.Role, "Dungeon Master", ClaimValueTypes.String);
+                    myClaims.Add(dungeonMaster);
+
+                    Claim player = new Claim(ClaimTypes.Role, "Player", ClaimValueTypes.String);
+                    myClaims.Add(player);
+
+                    var userIdentity = new ClaimsIdentity("Registration");
+                    userIdentity.AddClaims(myClaims);
+
+                    var userPrincipal = new ClaimsPrincipal(userIdentity);
+
+                    User.AddIdentity(userIdentity);
+
+                    await HttpContext.SignInAsync("BrandonCookie", userPrincipal,
+                        new AuthenticationProperties
+                        {
+                            ExpiresUtc = DateTime.UtcNow.AddHours(6),
+                            IsPersistent = lvm.RememberMe,
+                            AllowRefresh = false
+                        });
                     return RedirectToAction("Index", "Home");
                 }
             }
