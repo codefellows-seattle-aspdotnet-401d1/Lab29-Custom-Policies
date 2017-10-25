@@ -28,6 +28,7 @@ namespace DnDManager.Controllers
         }
 
         // GET: Characters/Details/5
+        [Authorize(Policy = "Player")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -46,6 +47,7 @@ namespace DnDManager.Controllers
         }
 
         // GET: Characters/Create
+        [Authorize(Policy = "Dungeon Master")]
         public IActionResult Create()
         {
             return View();
