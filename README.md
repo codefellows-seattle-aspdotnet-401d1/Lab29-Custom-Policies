@@ -3,15 +3,16 @@
 ### ReadMe
 - Your readme should include the following information:
 	- How long did it take you to complete this assignment?
-	3.5 hours
+	2.5 hours
 	- What did you struggle with? Why? How did you solve?
-	I struggled with visualizing what I needed to do. I had a light bulb
-	moment at the end of lab and managed to piece together a member and admin. Thought my 
-	layout stopped working and I am out of time to figure out why. 
+	I was unable to get a second external provider on my site and facebook still needs work
+	An issue I came accross was during my deployment I did not have my connection string correct 
+	I just looked at past deplyed apps to get it right and asked the TAs
 	- What did you learn during this assignment?
-	I learned how to add users with different claims/policies.
+	I started to understand how to impliment external logins for a web app. I am struggling 
+	but slowly getting there.
     - What resources did you utilize for this assignment?
-	Demo code and my previous days lab. 
+	Class demo and the online guides for the various social medias 
     
 
 
