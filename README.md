@@ -13,6 +13,8 @@
 	but slowly getting there.
     - What resources did you utilize for this assignment?
 	Class demo and the online guides for the various social medias 
+
+	http://lab2920171024113539.azurewebsites.net/
     
 
 
