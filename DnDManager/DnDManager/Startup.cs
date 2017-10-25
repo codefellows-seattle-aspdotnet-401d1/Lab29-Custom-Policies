@@ -1,5 +1,6 @@
 ﻿using DnDManager.Data;
 using DnDManager.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -24,6 +25,15 @@ namespace DnDManager
         {
             services.AddAuthorization(options => 
                      options.AddPolicy("Admin Only", policy => policy.RequireRole("Administrator")));
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Dungeon Master", policy => policy.RequireRole("Dungeon Master"));
+                options.AddPolicy("Player", policy => policy.RequireRole("Player"));
+            });
+
+            services.AddSingleton<IAuthorizationHandler, IsDm>();
+            services.AddSingleton<IAuthorizationHandler, IsPc>();
 
             services.AddMvc();
 
