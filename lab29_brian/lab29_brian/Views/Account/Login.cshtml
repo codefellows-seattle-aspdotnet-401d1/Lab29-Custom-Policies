@@ -1,5 +1,9 @@
 ﻿@model lab29_brian.Models.LoginViewModel
 
+    @{
+        Layout = "_LogedIn";
+    }
+
 <h1>Login Page</h1>
 <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
     <div asp-validation-summary="All"></div>
