@@ -51,7 +51,7 @@ namespace lab29_brian
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Ooops, I did a bad");
+                await context.Response.WriteAsync("Hello World!");
             });
         }
     }
