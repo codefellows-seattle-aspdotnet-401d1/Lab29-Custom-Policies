@@ -1,0 +1,11 @@
+C:\Projects\Labs\lab29_brian\lab29_brian\lab29_brian\bin\Debug\netcoreapp2.0\lab29_brian.deps.json
+C:\Projects\Labs\lab29_brian\lab29_brian\lab29_brian\bin\Debug\netcoreapp2.0\lab29_brian.runtimeconfig.json
+C:\Projects\Labs\lab29_brian\lab29_brian\lab29_brian\bin\Debug\netcoreapp2.0\lab29_brian.runtimeconfig.dev.json
+C:\Projects\Labs\lab29_brian\lab29_brian\lab29_brian\bin\Debug\netcoreapp2.0\lab29_brian.dll
+C:\Projects\Labs\lab29_brian\lab29_brian\lab29_brian\obj\Debug\netcoreapp2.0\lab29_brian.csprojResolveAssemblyReference.cache
+C:\Projects\Labs\lab29_brian\lab29_brian\lab29_brian\obj\Debug\netcoreapp2.0\lab29_brian.csproj.CoreCompileInputs.cache
+C:\Projects\Labs\lab29_brian\lab29_brian\lab29_brian\obj\Debug\netcoreapp2.0\lab29_brian.AssemblyInfoInputs.cache
+C:\Projects\Labs\lab29_brian\lab29_brian\lab29_brian\obj\Debug\netcoreapp2.0\lab29_brian.AssemblyInfo.cs
+C:\Projects\Labs\lab29_brian\lab29_brian\lab29_brian\bin\Debug\netcoreapp2.0\lab29_brian.pdb
+C:\Projects\Labs\lab29_brian\lab29_brian\lab29_brian\obj\Debug\netcoreapp2.0\lab29_brian.dll
+C:\Projects\Labs\lab29_brian\lab29_brian\lab29_brian\obj\Debug\netcoreapp2.0\lab29_brian.pdb
