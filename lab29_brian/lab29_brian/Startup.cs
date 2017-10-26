@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using lab29_brian.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 
 namespace lab29_brian
@@ -22,6 +23,9 @@ namespace lab29_brian
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie("LogInCookie", options => options.AccessDeniedPath = new PathString("/Account/Denied/"));
+
             services.AddMvc();
 
             services.AddDbContext<lab29_brianContext>(options =>
@@ -30,8 +34,7 @@ namespace lab29_brian
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("lab29_brianContext")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
         }
 
@@ -51,7 +54,7 @@ namespace lab29_brian
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Ooops, I did a bad");
+                await context.Response.WriteAsync("Hello World!");
             });
         }
     }
