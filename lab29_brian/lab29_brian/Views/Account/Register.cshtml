@@ -1,5 +1,9 @@
 ﻿@model lab29_brian.Models.RegistrationViewModel
 
+    @{
+        Layout = "_Layout";
+    }
+
 <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
     <h3>This is the sign up page</h3>
     <div asp-validation-summary="All"></div>

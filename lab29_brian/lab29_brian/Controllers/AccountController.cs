@@ -82,5 +82,10 @@ namespace lab29_brian.Controllers
             }
             return View();
         }
+
+        public IActionResult Denied()
+        {
+            return View();
+        }
     }
 }
