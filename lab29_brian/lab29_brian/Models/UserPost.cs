@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.ConstrainedExecution;
 
 namespace lab29_brian.Models
@@ -10,5 +11,6 @@ namespace lab29_brian.Models
         public string PostContent { get; set; }
         public string Picture { get; set; }
         public string GeoLocation { get; set; }
+
     }
 }
