@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using lab29_brian.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
 namespace lab29_brian
@@ -25,6 +26,14 @@ namespace lab29_brian
         {
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie("LogInCookie", options => options.AccessDeniedPath = new PathString("/Account/Denied/"));
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Admin Only", policy => policy.RequireRole("Admin"));
+                options.AddPolicy("Brians Only", policy => policy.Requirements.Add(new BriansOnly()));
+            });
+
+            services.AddSingleton<IAuthorizationHandler, NamedAccess>();
 
             services.AddMvc();
 

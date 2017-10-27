@@ -64,6 +64,7 @@ namespace lab29_brian.Controllers
         }
 
         // GET: UserPosts/Edit/5
+        [Authorize(Policy = "Admin Only")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -84,6 +85,7 @@ namespace lab29_brian.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "Admin Only")]
         public async Task<IActionResult> Edit(int id, [Bind("UserPostID,PostContent,Picture,GeoLocation")] UserPost userPost)
         {
             if (id != userPost.UserPostID)
@@ -115,6 +117,7 @@ namespace lab29_brian.Controllers
         }
 
         // GET: UserPosts/Delete/5
+        [Authorize(Policy = "Brians Only")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -133,6 +136,7 @@ namespace lab29_brian.Controllers
         }
 
         // POST: UserPosts/Delete/5
+        [Authorize(Policy = "Brians Only")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
