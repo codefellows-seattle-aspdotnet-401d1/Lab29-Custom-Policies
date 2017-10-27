@@ -39,7 +39,7 @@ namespace lab29_brian.Controllers
                 };
 
                 var result = await _userManager.CreateAsync(user, rvm.Password);
-
+                await _CheckForBrian(user);
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, false);
