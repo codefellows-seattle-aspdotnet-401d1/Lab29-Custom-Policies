@@ -55,7 +55,7 @@ namespace Lab29.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = rvm.FirstName, Email = rvm.Email, FirstName = rvm.FirstName, LastName = rvm.LastName, Birthday = rvm.Birthday };
+                var user = new ApplicationUser { UserName = rvm.LastName, Email = rvm.Email, FirstName = rvm.FirstName, LastName = rvm.LastName, Birthday = rvm.Birthday };
                 var result = await _userManager.CreateAsync(user, rvm.Password);
 
                 if (result.Succeeded)
@@ -138,7 +138,7 @@ namespace Lab29.Controllers
             return View("Forbidden");
         }
 
-        [Authorize]
+        [HttpPost]
         public IActionResult Logout()
         {
             _signInManager.SignOutAsync();
