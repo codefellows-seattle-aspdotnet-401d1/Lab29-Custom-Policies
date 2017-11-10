@@ -19,7 +19,7 @@
     </environment>
 </head>
 <body>
-    <div>
+    @*<div>
         @if (!User.Identities.Any(u => u.IsAuthenticated))
         {
             <span>Hello Stranger!</span>
@@ -33,7 +33,7 @@
             </span>
 
         }
-    </div>
+    </div>*@
     <div>
         @RenderBody()
     </div>

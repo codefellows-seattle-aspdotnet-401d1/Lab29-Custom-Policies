@@ -3,28 +3,78 @@
 @{
     Layout = "_Layout";
 }
+<style>
+    .button {
+        background-color: black;
+        height: 50px;
+        text-align: center;
+    }
+    .jumbotron{
+        font-family:Bahnschrift;
+        font-style: italic;
+    }
+    .gameTable{
+        background-color:blanchedalmond;
+    }
+    .gameTable th{
+        background-color:silver;
+    }
 
+        .button button {
+            margin-top: 10px;
+        }
+</style>
 
-<form method="get">
-    <button asp-controller="Account" asp-action="Register" type="submit">Register</button>
-</form>
-<form method="get">
-    <button asp-controller="Account" asp-action="login" type="submit">Login</button>
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3 button">
+            <form method="get">
+                <button asp-controller="Account" asp-action="Register" type="submit">Register</button>
+            </form>
+        </div>
+        <div class="col-sm-3 button">
+            <form method="get">
+                <button asp-controller="Account" asp-action="login" type="submit">Login</button>
+            </form>
+        </div>
+        <div class="col-sm-3 button">
+            <form method="get">
+                <button asp-controller="Account" asp-action="Logout" type="submit">Logout</button>
+            </form>
+        </div>
+        <div class="col-sm-3 button">
+            <form method="get">
+                <button asp-controller="VideoGames" asp-action="Index" type="submit">Add a Game</button>
+            </form>
+        </div>
+    </div>
+</div>
 
-<form method="get">
-    <button asp-controller="Account" asp-action="Logout" type="submit">Logout</button>
-</form>
+<div class="jumbotron text-center">
+    <h1>Your Awesome Game Library</h1>
+</div>
 
-<form method="get">
-    <button asp-controller="VideoGames" asp-action="Index" type="submit">Add a Game</button>
-</form>
+<table class="table gameTable">
+    <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Released</th>
+        </tr>
 
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+                <td>@item.Rating</td>
+                <td>@item.IsReleased</td>
+            </tr>
 
-@foreach (var item in Model)
-{
-    <h1>@item.Title</h1>
-    <p>@item.Description</p>
-    <p>@item.Rating</p>
-    <p>@item.IsReleased</p>
-}
+        }
+    </tbody>
+</table>
+

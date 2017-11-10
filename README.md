@@ -1,20 +1,24 @@
 
 
-### ReadMe
-- Your readme should include the following information:
-	- How long did it take you to complete this assignment?
-	2.5 hours
-	- What did you struggle with? Why? How did you solve?
-	I was unable to get a second external provider on my site and facebook still needs work
-	An issue I came accross was during my deployment I did not have my connection string correct 
-	I just looked at past deplyed apps to get it right and asked the TAs
-	- What did you learn during this assignment?
-	I started to understand how to impliment external logins for a web app. I am struggling 
-	but slowly getting there.
-    - What resources did you utilize for this assignment?
-	Class demo and the online guides for the various social medias 
+How long did it take you to complete this assignment?
+about 3 hours not finished turning in what I have.
+What did you struggle with? Why? How did you solve?
+I had to spend a good amount of time trying to debug my code. And front end design is not 
+something I have much passion for so trying to figure out what to do to style my page was 
+a little frustrating.
 
-	http://lab2920171024113539.azurewebsites.net/
+What did you learn during this assignment?
+I did start to get a grasp for bootstrap which is neat as it is a powerful tool for those who 
+can wield it.
+What resources did you utilize for this assingment?
+w3chools bootstrap articles
+
+
+
+
+
+
+
     
 
 
