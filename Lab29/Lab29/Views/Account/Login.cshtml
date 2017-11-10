@@ -1,0 +1,71 @@
+﻿@model Lab29.Models.LoginViewModel
+@{
+    Layout = "_Layout";
+}
+<form method="post">
+    <div asp-validation-summary="All"></div>
+
+    <label asp-for="Email"></label>
+    <input asp-for="Email" />
+    <br />
+    <label asp-for="Password"></label>
+    <input asp-for="Password" />
+    <br />
+
+    <label asp-for="RememberMe">
+        <input type="checkbox" asp-for="RememberMe" />
+        @Html.DisplayNameFor(m => m.RememberMe)
+    </label>
+    <button type="submit">Login</button>
+
+</form>
+
+<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+    </fb:login-button >
+
+@*<div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" 
+     data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>*@
+
+<div id="fb-root"></div>
+<script>
+(function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=1496869577057295';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '{1496869577057295}',
+                cookie: true,
+                xfbml: true,
+                version: '{v2.10}'
+            });
+
+            FB.AppEvents.logPageView();
+
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+
+        FB.getLoginStatus(function (response) {
+            statusChangeCallback(response);
+        });
+
+        function checkLoginState() {
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+            });
+        }
+
+    </script>

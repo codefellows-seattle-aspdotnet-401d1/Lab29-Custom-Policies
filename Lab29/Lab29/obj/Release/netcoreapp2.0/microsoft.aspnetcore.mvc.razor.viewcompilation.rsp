@@ -1,0 +1,17 @@
+C:\Users\Duane Rush\source\repos\Lab29-Custom-Policies\Lab29\Lab29
+--output-path=obj\Release\netcoreapp2.0\
+--application-name=Lab29
+--content-root=C:\Users\Duane Rush\source\repos\Lab29-Custom-Policies\Lab29\Lab29
+--file=C:\Users\Duane Rush\source\repos\Lab29-Custom-Policies\Lab29\Lab29\Views\Account\AdminRegister.cshtml
+--file=C:\Users\Duane Rush\source\repos\Lab29-Custom-Policies\Lab29\Lab29\Views\Account\Forbidden.cshtml
+--file=C:\Users\Duane Rush\source\repos\Lab29-Custom-Policies\Lab29\Lab29\Views\Account\Login.cshtml
+--file=C:\Users\Duane Rush\source\repos\Lab29-Custom-Policies\Lab29\Lab29\Views\Account\Register.cshtml
+--file=C:\Users\Duane Rush\source\repos\Lab29-Custom-Policies\Lab29\Lab29\Views\Home\Index.cshtml
+--file=C:\Users\Duane Rush\source\repos\Lab29-Custom-Policies\Lab29\Lab29\Views\Shared\_Layout.cshtml
+--file=C:\Users\Duane Rush\source\repos\Lab29-Custom-Policies\Lab29\Lab29\Views\Shared\_ValidationScriptsPartial.cshtml
+--file=C:\Users\Duane Rush\source\repos\Lab29-Custom-Policies\Lab29\Lab29\Views\VideoGames\Create.cshtml
+--file=C:\Users\Duane Rush\source\repos\Lab29-Custom-Policies\Lab29\Lab29\Views\VideoGames\Delete.cshtml
+--file=C:\Users\Duane Rush\source\repos\Lab29-Custom-Policies\Lab29\Lab29\Views\VideoGames\Details.cshtml
+--file=C:\Users\Duane Rush\source\repos\Lab29-Custom-Policies\Lab29\Lab29\Views\VideoGames\Edit.cshtml
+--file=C:\Users\Duane Rush\source\repos\Lab29-Custom-Policies\Lab29\Lab29\Views\VideoGames\Index.cshtml
+--file=C:\Users\Duane Rush\source\repos\Lab29-Custom-Policies\Lab29\Lab29\Views\_ViewImports.cshtml
